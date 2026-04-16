@@ -53,7 +53,7 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* --- ANIMACIONES DE LA TARJETA --- */
+        /* --- ANIMACIONES CONTINUAS --- */
         @keyframes floating {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -64,6 +64,17 @@
             25% { border-color: var(--azul); box-shadow: 0 0 20px rgba(52, 152, 219, 0.4); }
             50% { border-color: var(--verde); box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); }
             75% { border-color: var(--rojo); box-shadow: 0 0 20px rgba(231, 76, 60, 0.4); }
+        }
+
+        /* Animación de Balanceo Visible para MZG Systems */
+        @keyframes mzg-active-wobble {
+            0% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(-5deg) scale(1.1); }
+            30% { transform: rotate(5deg) scale(1.1); }
+            45% { transform: rotate(-5deg) scale(1.1); }
+            60% { transform: rotate(5deg) scale(1.1); }
+            75% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(0deg) scale(1); }
         }
 
         @keyframes shine {
@@ -143,7 +154,7 @@
         .fun-footer {
             background-color: var(--azul);
             background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-            background-size: 20px 20px; /* Patrón de puntitos festivos */
+            background-size: 20px 20px;
             color: white;
             padding: 50px 20px 30px;
             text-align: center;
@@ -152,7 +163,6 @@
             border-top: 10px solid var(--amarillo);
         }
 
-        /* Efecto de borde ondulado arriba del footer */
         .fun-footer::before {
             content: "";
             position: absolute;
@@ -166,16 +176,17 @@
 
         .footer-brand {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--amarillo);
             text-decoration: none;
             display: inline-block;
             margin-top: 5px;
-            text-shadow: 1px 1px 0px var(--rojo);
-            transition: transform 0.3s;
+            text-shadow: 2px 2px 0px var(--rojo);
+            
+            /* Animación automática y visible */
+            animation: mzg-active-wobble 3s infinite ease-in-out;
+            transform-origin: center;
         }
-
-        .footer-brand:hover { transform: scale(1.1) rotate(3deg); }
 
         .footer-copy { font-size: 0.8rem; opacity: 0.9; margin-bottom: 5px; font-weight: bold; }
         .footer-location { font-size: 0.9rem; margin-bottom: 15px; }
@@ -186,7 +197,7 @@
 
     <div id="preloader">
         <div class="clown-animation">🤡</div>
-        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One'; text-shadow: 1px 1px white;">¡BIENVENIDOS A LA FIESTA!</p>
+        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS A LA FIESTA!</p>
     </div>
 
     <div class="main-content">
@@ -239,7 +250,7 @@
         <div class="footer-copy">© 2026 Organización 1a Cerrada</div>
         <div>
             Potenciado con magia por:<br>
-            <a href="https://www.facebook.com/MZGsystems" class="footer-brand">MZG Systems</a>
+            <a href="#" class="footer-brand">MZG Systems</a>
         </div>
         <div style="margin-top: 15px; font-size: 1.5rem;">✨🎠✨</div>
     </footer>
