@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> kermés Vecinal 2026 - Organización 1a Cerrada</title>
+    <title>Kermés Vecinal 2026 - Organización 1a Cerrada</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --rojo: #E74C3C;
-            --azul: #3498DB;
+            --azul-canva: #0084CC;
             --amarillo: #F1C40F;
             --verde: #2ECC71;
-            --fondo-festivo: var(--azul);
+            --fondo-festivo: var(--azul-canva);
             --texto-oscuro: #2F2F2F;
         }
 
@@ -55,7 +55,7 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* --- ANIMACIONES DE LA TARJETA --- */
+        /* --- ANIMACIONES --- */
         @keyframes floating {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
@@ -65,7 +65,19 @@
             0%, 100% { border-color: var(--amarillo); box-shadow: 0 0 30px rgba(241, 196, 15, 0.6); }
             25% { border-color: var(--rojo); box-shadow: 0 0 30px rgba(231, 76, 60, 0.6); }
             50% { border-color: var(--verde); box-shadow: 0 0 30px rgba(46, 204, 113, 0.6); }
-            75% { border-color: var(--azul); box-shadow: 0 0 30px rgba(52, 152, 219, 0.6); }
+            75% { border-color: var(--azul-canva); box-shadow: 0 0 30px rgba(0, 132, 204, 0.6); }
+        }
+
+        @keyframes logo-spin {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(360deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Brillo suave detrás del logo */
+        @keyframes logo-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); }
+            50% { filter: drop-shadow(0 0 25px rgba(255, 210, 0, 0.6)); }
         }
 
         @keyframes mzg-active-wobble {
@@ -76,12 +88,6 @@
             60% { transform: rotate(8deg) scale(1.1); }
             75% { transform: rotate(0deg) scale(1); }
             100% { transform: rotate(0deg) scale(1); }
-        }
-
-        /* Nueva animación de giro para el logo */
-        @keyframes logo-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* --- CONTENIDO --- */
@@ -105,91 +111,124 @@
             animation: fadeIn 1.2s ease-out, floating 6s ease-in-out infinite, rainbow-border 8s linear infinite;
         }
 
-        .card::before {
-            content: "🎟️";
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 2.2rem;
-            animation: tada 3s infinite;
+        /* --- MEJORA EN EL CONTENEDOR DEL LOGO --- */
+        .logo-section {
+            padding: 40px 20px 25px;
+            background: radial-gradient(circle, #ffffff 60%, #f9f9f9 100%);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .logo-container { padding: 35px 20px 20px; background-color: #fff; }
-        
-        /* Estilos del logo actualizados: más grande y con giro continuo */
+        /* Decoración de confeti sutil detrás del logo */
+        .logo-section::before {
+            content: "✨";
+            position: absolute;
+            left: 20%;
+            font-size: 1.5rem;
+            animation: tada 4s infinite;
+        }
+        .logo-section::after {
+            content: "🌟";
+            position: absolute;
+            right: 20%;
+            font-size: 1.5rem;
+            animation: tada 5s infinite;
+        }
+
         .logo-img { 
-            width: 200px; /* Aumentado de 160px a 200px */
-            max-width: 80%; /* Ajustado max-width */
+            width: 180px; 
+            max-width: 75%; 
             height: auto; 
-            /* zoomIn al inicio, luego giro continuo cada 8s */
-            animation: zoomIn 1s ease-out, logo-spin 8s ease-in-out infinite 1s;
+            z-index: 2;
+            /* El giro de 8s se mantiene, pero sumamos el resplandor */
+            animation: zoomIn 1s ease-out, logo-spin 8s ease-in-out infinite 1s, logo-glow 3s ease-in-out infinite;
         }
 
         .header { 
             background-color: var(--rojo); 
-            padding: 40px 20px; 
+            padding: 30px 20px; 
             color: white; 
+            border-top: 5px solid var(--amarillo);
             border-bottom: 8px solid var(--amarillo);
         }
         
         h1 { 
             font-family: 'Fredoka One', cursive; 
-            font-size: clamp(1.8rem, 8vw, 2.6rem); 
+            font-size: clamp(1.4rem, 6vw, 2.2rem); 
             margin: 0; 
-            text-shadow: 3px 3px 0px var(--azul); 
+            text-shadow: 3px 3px 0px var(--azul-canva); 
+            line-height: 1.2;
         }
 
         .neighbor-call {
-            background-color: var(--azul);
-            color: white;
-            padding: 15px;
-            margin: -25px auto 25px;
-            width: 85%;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            z-index: 10;
-            position: relative;
+            color: var(--amarillo);
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            margin: 15px 0 5px;
+            text-shadow: 2px 2px 0px var(--texto-oscuro);
         }
 
         .content { padding: 10px 25px 30px; }
 
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-        .info-box { 
-            background: #f9f9f9; 
-            padding: 15px; 
-            border-radius: 25px; 
-            border: 3px solid var(--amarillo); 
-            transition: all 0.3s ease;
+        .cooperation-text-top {
+            font-weight: 700;
+            color: var(--texto-oscuro);
+            margin: 0 0 15px;
+            font-size: 1rem;
         }
-        .info-box:hover { 
-            transform: scale(1.05);
-            background: #fff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .info-box strong { display: block; color: var(--rojo); font-size: 0.85rem; margin-bottom: 5px; text-transform: uppercase; }
-        .info-box p { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--texto-oscuro); line-height: 1.2; }
 
-        .cooperation-section {
-            background-color: #f0fff0;
-            margin: 20px 0;
-            padding: 25px;
+        /* --- BURBUJA AZUL ESTILO CANVA --- */
+        .blue-cloud-box {
+            background-color: var(--azul-canva);
+            color: white;
+            padding: 18px;
             border-radius: 30px;
-            border: 4px dashed var(--verde);
-            position: relative;
+            margin: 10px auto 20px;
+            width: 90%;
+            border: 4px solid white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            font-family: 'Fredoka One', cursive;
+            animation: zoomIn 1s both 1.2s;
         }
 
-        .cooperation-section h3 { margin: 0 0 15px 0; color: var(--verde); font-family: 'Fredoka One', cursive; font-size: 1.4rem; }
+        .blue-cloud-box p { margin: 2px 0; font-size: 1.1rem; line-height: 1.2; }
 
-        /* --- FOOTER UNIFICADO --- */
+        .cooperation-msg-bottom {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--texto-oscuro);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .welcome-msg {
+            color: var(--azul-canva);
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            animation: heartBeat 2s infinite;
+        }
+
+        .info-bottom-grid {
+            display: flex;
+            justify-content: space-around;
+            border-top: 2px dashed #ddd;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .info-bottom-grid div { flex: 1; }
+        .info-bottom-grid strong { display: block; color: var(--rojo); font-size: 0.85rem; }
+        .info-bottom-grid p { margin: 4px 0 0; font-weight: 800; font-size: 1rem; }
+
+        /* --- FOOTER --- */
         .fun-footer {
             background-color: transparent;
             color: white;
             padding: 20px 20px 50px;
             text-align: center;
-            position: relative;
         }
 
         .footer-brand {
@@ -204,13 +243,7 @@
             margin-top: 10px;
         }
 
-        .footer-copy { 
-            font-size: 0.9rem; 
-            margin-bottom: 8px; 
-            font-weight: bold; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-            opacity: 0.9;
-        }
+        .footer-copy { font-size: 0.9rem; font-weight: bold; opacity: 0.9; }
 
     </style>
 </head>
@@ -218,49 +251,54 @@
 
     <div id="preloader">
         <div class="clown-animation">🪁</div>
-        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS A LA KERMÉS!</p>
+        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS!</p>
     </div>
 
     <div class="main-content">
         <div class="card">
             
-            <div class="logo-container">
+            <div class="logo-section">
                 <img src="logo.png" alt="Logotipo Organización 1a Cerrada" class="logo-img">
             </div>
 
             <div class="header">
-                <h1 class="animate__animated animate__rubberBand">¡DÍA DEL NIÑO Y LA NIÑA!</h1>
-                <p style="font-weight: bold; margin-top: 8px; letter-spacing: 1px;">ORGANIZACIÓN 1A CERRADA</p>
+                <h1 class="animate__animated animate__rubberBand">¡KERMÉS DÍA DEL NIÑO Y LA NIÑA!</h1>
+                <p style="font-weight: bold; margin-top: 8px; font-size: 0.9rem;">ORGANIZACIÓN 1A CERRADA</p>
             </div>
 
             <div class="content">
-                <div class="neighbor-call animate__animated animate__pulse animate__infinite">
-                    ✨ INVITACIÓN ABIERTA ✨
+                <div class="neighbor-call">VECINOS</div>
+                
+                <p class="cooperation-text-top">
+                    Los invitamos a la tradicional kermés que cada año se lleva a cabo.
+                </p>
+
+                <div class="blue-cloud-box">
+                    <p>1er. Callejón Hidalgo,</p>
+                    <p>Bo. La Asunción</p>
                 </div>
 
-                <div class="info-grid">
-                    <div class="info-box">
-                        <strong>📍 UBICACIÓN</strong>
-                        <p>1er. Callejón Miguel Hidalgo #18</p>
-                    </div>
-                    <div class="info-box">
-                        <strong>🕔 FECHA Y HORA</strong>
-                        <p>30 de Abril, 2026<br>A las 5:00 PM</p>
-                    </div>
+                <p class="cooperation-msg-bottom">
+                    Recuerda poner tu puesto / mesa <br> y cooperar con tu voluntad
+                </p>
+
+                <div class="welcome-msg">
+                    ¡Será un gusto recibir a todos los pequeñines de su familia!
                 </div>
 
-                <div class="cooperation-section">
-                    <h3>🎡 ¡Coloca tu mesa!</h3>
-                    <p style="line-height: 1.5; color: #444; font-weight: 500;">
-                        Con mucho cariño les invitamos a colocar sus mesas y participar con lo que nazca de su voluntad para que este día sea especial. 
-                    </p>
-                    <p style="margin-top: 15px; font-weight: bold; color: var(--azul); font-size: 1.1rem;">
-                        🥳  ¡Será un gusto recibir a todos los pequeñines de su familia!  🎉
-                    </p>
+                <div class="info-bottom-grid">
+                    <div>
+                        <strong>📅 FECHA</strong>
+                        <p>30 de Abril</p>
+                    </div>
+                    <div>
+                        <strong>🕔 INICIA</strong>
+                        <p>5:30 P.M.</p>
+                    </div>
                 </div>
                 
-                <div style="font-size: 2.5rem; animation: tada 2s infinite; letter-spacing: 5px;">
-                    🍭🧩🍦🍬🍿🎮
+                <div style="font-size: 2.5rem; animation: tada 2s infinite; margin-top: 20px; letter-spacing: 8px;">
+                    🍭🎈🍿🎮​
                 </div>
             </div>
         </div>
@@ -268,9 +306,9 @@
 
     <footer class="fun-footer">
         <div class="footer-copy">© 2026 Organización 1a Cerrada - Xochimilco, CDMX</div>
-        <div style="opacity: 0.8; font-size: 0.85rem;">Potenciado con magia por:</div>
+        <div style="opacity: 0.8; font-size: 0.85rem; margin-top: 10px;">Potenciado con magia por:</div>
         <a href="https://www.facebook.com/MZGsystems" target="_blank" class="footer-brand">MZG Systems</a>
-        <div style="margin-top: 25px; font-size: 1.8rem;">✨🎠✨</div>
+        <div style="margin-top: 20px; font-size: 1.8rem;">✨🎠✨</div>
     </footer>
 
     <script>
