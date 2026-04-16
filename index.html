@@ -12,7 +12,6 @@
             --azul: #3498DB;
             --amarillo: #F1C40F;
             --verde: #2ECC71;
-            /* Fondo ahora con el patrón del footer */
             --fondo-festivo: var(--azul);
             --texto-oscuro: #2F2F2F;
         }
@@ -21,7 +20,6 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            /* Aplicando el estilo del footer a todo el body */
             background-color: var(--fondo-festivo);
             background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
             background-size: 30px 30px;
@@ -72,12 +70,18 @@
 
         @keyframes mzg-active-wobble {
             0% { transform: rotate(0deg) scale(1); }
-            15% { transform: rotate(-5deg) scale(1.1); }
-            30% { transform: rotate(5deg) scale(1.1); }
-            45% { transform: rotate(-5deg) scale(1.1); }
-            60% { transform: rotate(5deg) scale(1.1); }
+            15% { transform: rotate(-8deg) scale(1.1); }
+            30% { transform: rotate(8deg) scale(1.1); }
+            45% { transform: rotate(-8deg) scale(1.1); }
+            60% { transform: rotate(8deg) scale(1.1); }
             75% { transform: rotate(0deg) scale(1); }
             100% { transform: rotate(0deg) scale(1); }
+        }
+
+        /* Nueva animación de giro para el logo */
+        @keyframes logo-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* --- CONTENIDO --- */
@@ -101,18 +105,25 @@
             animation: fadeIn 1.2s ease-out, floating 6s ease-in-out infinite, rainbow-border 8s linear infinite;
         }
 
-        /* Adorno superior en la tarjeta similar al footer */
         .card::before {
-            content: "🎈";
+            content: "🎟️";
             position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 2rem;
+            top: 15px;
+            right: 25px;
+            font-size: 2.2rem;
             animation: tada 3s infinite;
         }
 
-        .logo-container { padding: 30px 20px; background-color: #fff; }
-        .logo-img { width: 160px; max-width: 70%; height: auto; animation: zoomIn 1s ease-out; }
+        .logo-container { padding: 35px 20px 20px; background-color: #fff; }
+        
+        /* Estilos del logo actualizados: más grande y con giro continuo */
+        .logo-img { 
+            width: 200px; /* Aumentado de 160px a 200px */
+            max-width: 80%; /* Ajustado max-width */
+            height: auto; 
+            /* zoomIn al inicio, luego giro continuo cada 8s */
+            animation: zoomIn 1s ease-out, logo-spin 8s ease-in-out infinite 1s;
+        }
 
         .header { 
             background-color: var(--rojo); 
@@ -132,7 +143,7 @@
             background-color: var(--azul);
             color: white;
             padding: 15px;
-            margin: -20px auto 25px; /* Sube un poco para encimar el header */
+            margin: -25px auto 25px;
             width: 85%;
             border-radius: 50px;
             font-weight: bold;
@@ -147,15 +158,19 @@
 
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .info-box { 
-            background: var(--fondo); 
+            background: #f9f9f9; 
             padding: 15px; 
             border-radius: 25px; 
             border: 3px solid var(--amarillo); 
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
         }
-        .info-box:hover { transform: scale(1.05); }
-        .info-box strong { display: block; color: var(--rojo); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; }
-        .info-box p { margin: 0; font-weight: 700; font-size: 1rem; color: var(--texto-oscuro); }
+        .info-box:hover { 
+            transform: scale(1.05);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .info-box strong { display: block; color: var(--rojo); font-size: 0.85rem; margin-bottom: 5px; text-transform: uppercase; }
+        .info-box p { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--texto-oscuro); line-height: 1.2; }
 
         .cooperation-section {
             background-color: #f0fff0;
@@ -170,32 +185,39 @@
 
         /* --- FOOTER UNIFICADO --- */
         .fun-footer {
-            background-color: transparent; /* Ya tiene el fondo del body */
+            background-color: transparent;
             color: white;
-            padding: 20px 20px 40px;
+            padding: 20px 20px 50px;
             text-align: center;
             position: relative;
         }
 
         .footer-brand {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--amarillo);
             text-decoration: none;
             display: inline-block;
             text-shadow: 2px 2px 0px var(--rojo);
             animation: mzg-active-wobble 3s infinite ease-in-out;
             transform-origin: center;
+            margin-top: 10px;
         }
 
-        .footer-copy { font-size: 0.9rem; margin-bottom: 5px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .footer-copy { 
+            font-size: 0.9rem; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
 
     </style>
 </head>
 <body>
 
     <div id="preloader">
-        <div class="clown-animation">🤡</div>
+        <div class="clown-animation">🪁</div>
         <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS A LA KERMESSE!</p>
     </div>
 
@@ -208,7 +230,7 @@
 
             <div class="header">
                 <h1 class="animate__animated animate__rubberBand">¡DÍA DEL NIÑO!</h1>
-                <p style="font-weight: bold; margin-top: 8px;">ORGANIZACIÓN 1A CERRADA</p>
+                <p style="font-weight: bold; margin-top: 8px; letter-spacing: 1px;">ORGANIZACIÓN 1A CERRADA</p>
             </div>
 
             <div class="content">
@@ -233,12 +255,12 @@
                         Se invita a los vecinos a que <b>pongan sus mesas</b> y cooperen con lo que sea su voluntad. 
                     </p>
                     <p style="margin-top: 15px; font-weight: bold; color: var(--azul); font-size: 1.1rem;">
-                        🌈 ¡Todos los niños de la familia son bienvenidos!
+                        🥳 ¡Todos los niños de la familia son bienvenidos! 🎉
                     </p>
                 </div>
                 
-                <div style="font-size: 2.5rem; animation: tada 2s infinite;">
-                    🍭 🧩 🍦
+                <div style="font-size: 2.5rem; animation: tada 2s infinite; letter-spacing: 5px;">
+                    🍭🧩🍦🍬🍿🎮
                 </div>
             </div>
         </div>
@@ -246,9 +268,9 @@
 
     <footer class="fun-footer">
         <div class="footer-copy">© 2026 Organización 1a Cerrada - Xochimilco, CDMX</div>
-        <div style="margin-bottom: 10px; opacity: 0.8;">Potenciado con magia por:</div>
-        <a href="https://www.facebook.com/MZGsystems" class="footer-brand">MZG Systems</a>
-        <div style="margin-top: 20px; font-size: 1.5rem;">✨🎠✨</div>
+        <div style="opacity: 0.8; font-size: 0.85rem;">Potenciado con magia por:</div>
+        <a href="https://www.facebook.com/MZGsystems" target="_blank" class="footer-brand">MZG Systems</a>
+        <div style="margin-top: 25px; font-size: 1.8rem;">✨🎠✨</div>
     </footer>
 
     <script>
