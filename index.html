@@ -12,7 +12,8 @@
             --azul: #3498DB;
             --amarillo: #F1C40F;
             --verde: #2ECC71;
-            --fondo: #fefef2;
+            /* Fondo ahora con el patrón del footer */
+            --fondo-festivo: var(--azul);
             --texto-oscuro: #2F2F2F;
         }
 
@@ -20,7 +21,10 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--fondo);
+            /* Aplicando el estilo del footer a todo el body */
+            background-color: var(--fondo-festivo);
+            background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+            background-size: 30px 30px;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -53,20 +57,19 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* --- ANIMACIONES CONTINUAS --- */
+        /* --- ANIMACIONES DE LA TARJETA --- */
         @keyframes floating {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes rainbow-border {
-            0%, 100% { border-color: var(--amarillo); box-shadow: 0 0 20px rgba(241, 196, 15, 0.4); }
-            25% { border-color: var(--azul); box-shadow: 0 0 20px rgba(52, 152, 219, 0.4); }
-            50% { border-color: var(--verde); box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); }
-            75% { border-color: var(--rojo); box-shadow: 0 0 20px rgba(231, 76, 60, 0.4); }
+            0%, 100% { border-color: var(--amarillo); box-shadow: 0 0 30px rgba(241, 196, 15, 0.6); }
+            25% { border-color: var(--rojo); box-shadow: 0 0 30px rgba(231, 76, 60, 0.6); }
+            50% { border-color: var(--verde); box-shadow: 0 0 30px rgba(46, 204, 113, 0.6); }
+            75% { border-color: var(--azul); box-shadow: 0 0 30px rgba(52, 152, 219, 0.6); }
         }
 
-        /* Animación de Balanceo Visible para MZG Systems */
         @keyframes mzg-active-wobble {
             0% { transform: rotate(0deg) scale(1); }
             15% { transform: rotate(-5deg) scale(1.1); }
@@ -77,119 +80,115 @@
             100% { transform: rotate(0deg) scale(1); }
         }
 
-        @keyframes shine {
-            0% { left: -100%; }
-            20%, 100% { left: 100%; }
-        }
-
         /* --- CONTENIDO --- */
         .main-content {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         .card {
-            background: white;
+            background: #ffffff;
             width: 100%;
             max-width: 500px;
-            border-radius: 40px;
+            border-radius: 50px;
             overflow: hidden;
             text-align: center;
-            border: 10px solid var(--amarillo);
+            border: 12px solid var(--amarillo);
+            position: relative;
             animation: fadeIn 1.2s ease-out, floating 6s ease-in-out infinite, rainbow-border 8s linear infinite;
         }
 
-        .logo-container { padding: 25px 20px; background-color: #fff; }
+        /* Adorno superior en la tarjeta similar al footer */
+        .card::before {
+            content: "🎈";
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            animation: tada 3s infinite;
+        }
+
+        .logo-container { padding: 30px 20px; background-color: #fff; }
         .logo-img { width: 160px; max-width: 70%; height: auto; animation: zoomIn 1s ease-out; }
 
-        .header { background-color: var(--rojo); padding: 6% 20px; color: white; animation: slideInDown 1s ease-out; }
-        h1 { font-family: 'Fredoka One', cursive; font-size: clamp(1.6rem, 7vw, 2.4rem); margin: 0; text-shadow: 2px 2px 0px var(--azul); }
+        .header { 
+            background-color: var(--rojo); 
+            padding: 40px 20px; 
+            color: white; 
+            border-bottom: 8px solid var(--amarillo);
+        }
+        
+        h1 { 
+            font-family: 'Fredoka One', cursive; 
+            font-size: clamp(1.8rem, 8vw, 2.6rem); 
+            margin: 0; 
+            text-shadow: 3px 3px 0px var(--azul); 
+        }
 
         .neighbor-call {
             background-color: var(--azul);
             color: white;
             padding: 15px;
-            margin: 25px auto;
-            width: 92%;
-            border-radius: 20px;
+            margin: -20px auto 25px; /* Sube un poco para encimar el header */
+            width: 85%;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            border: 4px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 10;
             position: relative;
-            overflow: hidden;
-            animation: bounceInLeft 1s ease-out 0.8s both;
         }
 
-        .neighbor-call::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shine 4s infinite;
+        .content { padding: 10px 25px 30px; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .info-box { 
+            background: var(--fondo); 
+            padding: 15px; 
+            border-radius: 25px; 
+            border: 3px solid var(--amarillo); 
+            transition: transform 0.3s;
         }
-
-        .content { padding: 10px 20px; }
-
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-        .info-box { background: #f8f9fa; padding: 15px; border-radius: 20px; border: 2px solid #eee; animation: fadeIn 1s ease-out 1.2s both; }
-        .info-box strong { display: block; color: var(--azul); font-size: 0.85rem; margin-bottom: 5px; text-transform: uppercase; }
-        .info-box p { margin: 0; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
+        .info-box:hover { transform: scale(1.05); }
+        .info-box strong { display: block; color: var(--rojo); font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; }
+        .info-box p { margin: 0; font-weight: 700; font-size: 1rem; color: var(--texto-oscuro); }
 
         .cooperation-section {
-            background-color: #e8f5e9;
-            margin: 20px 10px;
-            padding: 20px;
-            border-radius: 25px;
-            border: 3px dashed var(--verde);
-            animation: zoomInUp 1s ease-out 1.5s both;
+            background-color: #f0fff0;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 30px;
+            border: 4px dashed var(--verde);
+            position: relative;
         }
 
-        .cooperation-section h3 { margin: 0 0 10px 0; color: var(--verde); font-family: 'Fredoka One', cursive; }
+        .cooperation-section h3 { margin: 0 0 15px 0; color: var(--verde); font-family: 'Fredoka One', cursive; font-size: 1.4rem; }
 
-        .final-icons { font-size: 2.2rem; margin-top: 15px; animation: tada 2s infinite; }
-
-        /* --- FOOTER FESTIVO --- */
+        /* --- FOOTER UNIFICADO --- */
         .fun-footer {
-            background-color: var(--azul);
-            background-image: radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
-            background-size: 20px 20px;
+            background-color: transparent; /* Ya tiene el fondo del body */
             color: white;
-            padding: 50px 20px 30px;
+            padding: 20px 20px 40px;
             text-align: center;
             position: relative;
-            margin-top: 20px;
-            border-top: 10px solid var(--amarillo);
-        }
-
-        .fun-footer::before {
-            content: "";
-            position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            height: 25px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,2,1200,34.58V0Z" fill="%23fefef2"/></svg>');
-            background-size: cover;
         }
 
         .footer-brand {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--amarillo);
             text-decoration: none;
             display: inline-block;
-            margin-top: 5px;
             text-shadow: 2px 2px 0px var(--rojo);
-            
-            /* Animación automática y visible */
             animation: mzg-active-wobble 3s infinite ease-in-out;
             transform-origin: center;
         }
 
-        .footer-copy { font-size: 0.8rem; opacity: 0.9; margin-bottom: 5px; font-weight: bold; }
-        .footer-location { font-size: 0.9rem; margin-bottom: 15px; }
+        .footer-copy { font-size: 0.9rem; margin-bottom: 5px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
 
     </style>
 </head>
@@ -197,7 +196,7 @@
 
     <div id="preloader">
         <div class="clown-animation">🤡</div>
-        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS A LA FIESTA!</p>
+        <p style="font-weight: bold; color: var(--rojo); margin-top:25px; font-family: 'Fredoka One';">¡BIENVENIDOS A LA KERMESSE!</p>
     </div>
 
     <div class="main-content">
@@ -209,11 +208,11 @@
 
             <div class="header">
                 <h1 class="animate__animated animate__rubberBand">¡DÍA DEL NIÑO!</h1>
-                <p style="font-weight: bold; margin-top: 8px; letter-spacing: 1px;">ORGANIZACIÓN 1A CERRADA</p>
+                <p style="font-weight: bold; margin-top: 8px;">ORGANIZACIÓN 1A CERRADA</p>
             </div>
 
             <div class="content">
-                <div class="neighbor-call">
+                <div class="neighbor-call animate__animated animate__pulse animate__infinite">
                     ✨ INVITACIÓN ABIERTA ✨
                 </div>
 
@@ -230,29 +229,26 @@
 
                 <div class="cooperation-section">
                     <h3>🎡 ¡Mesas y Cooperación!</h3>
-                    <p style="line-height: 1.5; color: #444;">
+                    <p style="line-height: 1.5; color: #444; font-weight: 500;">
                         Se invita a los vecinos a que <b>pongan sus mesas</b> y cooperen con lo que sea su voluntad. 
                     </p>
-                    <p style="margin-top: 12px; font-weight: bold; color: var(--azul);">
+                    <p style="margin-top: 15px; font-weight: bold; color: var(--azul); font-size: 1.1rem;">
                         🌈 ¡Todos los niños de la familia son bienvenidos!
                     </p>
                 </div>
                 
-                <div class="final-icons">
-                    🎈 🍿 🧩 🍦
+                <div style="font-size: 2.5rem; animation: tada 2s infinite;">
+                    🍭 🧩 🍦
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="fun-footer">
-        <div class="footer-location">📍 Xochimilco, CDMX</div>
-        <div class="footer-copy">© 2026 Organización 1a Cerrada</div>
-        <div>
-            Potenciado con magia por:<br>
-            <a href="#" class="footer-brand">MZG Systems</a>
-        </div>
-        <div style="margin-top: 15px; font-size: 1.5rem;">✨🎠✨</div>
+        <div class="footer-copy">© 2026 Organización 1a Cerrada - Xochimilco, CDMX</div>
+        <div style="margin-bottom: 10px; opacity: 0.8;">Potenciado con magia por:</div>
+        <a href="#" class="footer-brand">MZG Systems</a>
+        <div style="margin-top: 20px; font-size: 1.5rem;">✨🎠✨</div>
     </footer>
 
     <script>
